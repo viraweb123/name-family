@@ -5,12 +5,19 @@ on:
     branches: ['master', 'main']
 
 jobs:
-  build:
-    runs-on: ubunut-22.04
-    steps:
-    - name: Check out code
-      uses: actions/checkout@v3
-    - name: Build docker imagesj
-      run: docker build .
-    - name: save image
-      run: docker save -o trained_model.tar $(docker images | awk '{print $1}' | awk 'NR==2')
+       publish-odoo16-image:
+              runs-on: ubuntu-latest
+              steps:
+                     - uses: actions/checkout@v2
+                     - uses: docker/login-action@v1
+                       with:
+                              registry: ghcr.io
+                              username: ${{ github.actor }}
+                              password: ${{ secrets.GITHUB_TOKEN }}
+                     - name: Build nvidia core module
+                       run: |
+                              timetag=(`date +%Y%M%d`)
+                              cd core
+                              docker build . --tag ghcr.io/viraweb/pt-nvidia-core:.${timetag} --tag ghcr.io/viraweb/pt-nvidia-core:22.01
+                              docker push ghcr.io/viraweb/pt-nvidia-core:22.01
+                              docker push ghcr.io/viraweb/pt-nvidia-core:.${timetag}
