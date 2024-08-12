@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:22.01-py3
+FROM nvcr.io/nvidia/pytorch:17.04-py3
 
 # # Set environment variables
 # ENV DEBIAN_FRONTEND=noninteractive
