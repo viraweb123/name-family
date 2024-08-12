@@ -18,6 +18,6 @@ jobs:
                        run: |
                               timetag=(`date +%Y%M%d`)
                               cd core
-                              docker build . --tag ghcr.io/viraweb/pt-nvidia-core:.${timetag} --tag ghcr.io/viraweb/pt-nvidia-core:22.01
+                              docker build . --tag ghcr.io/viraweb/pt-nvidia-core:${timetag} --tag ghcr.io/viraweb/pt-nvidia-core:22.01
                               docker push ghcr.io/viraweb/pt-nvidia-core:22.01
-                              docker push ghcr.io/viraweb/pt-nvidia-core:.${timetag}
+                              docker push ghcr.io/viraweb/pt-nvidia-core:${timetag}
