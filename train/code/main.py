@@ -60,7 +60,7 @@ def train(train_file_path,
 
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-logging.currentframe(torch.cuda.is_available())
+print(torch.cuda.is_available())
 train(
     train_file_path="../input/test.txt",
     model_name="gpt2",
