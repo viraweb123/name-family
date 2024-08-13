@@ -6,7 +6,7 @@ from datetime import datetime
 import torch
 import logging 
 
-print("thissss toorch" + torch.cuda.is_available())
+print("thissss toorch" , torch.cuda.is_available())
 
 wrapped_tokenizer = PreTrainedTokenizerFast(
     tokenizer_file="tokenizer_BPE3.json",
