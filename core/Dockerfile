@@ -28,6 +28,6 @@ RUN pip3 install transformers
 # COPY . .
 
 # Set the entrypoint
-ENTRYPOINT [ "python3" ]
+# ENTRYPOINT [ "python3" ]
 
-CMD [ "code/main.py" ]
+# CMD [ "code/main.py" ]
