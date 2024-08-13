@@ -74,12 +74,27 @@ def train(train_file_path,
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 
+train_file_path_var='../input/test.txt'
+model_name_var='gpt2'
+out_put_dir_var=f"../output/{log_dir_name}/trained_model"
+overwrite_output_dir_var=True
+per_device_train_batch_size_var=2
+num_train_epochs_var=50
+save_steps_var=2
+cuda_avaliable=torch.cuda.is_available()
+
+logging.info("Optimizer is AdamW")
+logging.info("using model" ,model_name_var)
+logging.warning("Saving log in:", out_put_dir_var)
+logging.warning("Using dataset:", train_file_path_var)
+logging.debug("Epoch:", num_train_epochs_var)
+
 train(
-    train_file_path="../input/test.txt",
-    model_name="gpt2",
-    output_dir=f"../output/{log_dir_name}/trained_model",
-    overwrite_output_dir=True,
-    per_device_train_batch_size=2,
-    num_train_epochs=32,
-    save_steps=5000
+    train_file_path=train_file_path_var,
+    model_name=model_name_var,
+    output_dir=out_put_dir_var,
+    overwrite_output_dir=overwrite_output_dir_var,
+    per_device_train_batch_size=per_device_train_batch_size_var,
+    num_train_epochs=num_train_epochs_var,
+    save_steps=save_steps_var,
 )
