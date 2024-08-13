@@ -2,11 +2,11 @@ from transformers import GPT2LMHeadModel
 from transformers import PreTrainedTokenizerFast
 from transformers import TextDataset, DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments
-import datetime
+from datetime import datetime
 import logging 
 
 wrapped_tokenizer = PreTrainedTokenizerFast(
-    tokenizer_file="tokenizer_BPE3.json",
+    tokenizer_file="../tokenizer/tokenizer_BPE3.json",
     bos_token="<|endoftext|>",
     eos_token="<|endoftext|>",
     
@@ -57,12 +57,12 @@ def train(train_file_path,
     trainer.train()
     trainer.save_model()
 
-log_dir_name = str(datetime.datetime.now()).replace(" ", "_").replace(":", "-").split('.')[0]
+log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 train(
-    train_file_path="input/test.txt",
+    train_file_path="../input/test.txt",
     model_name="gpt2",
-    output_dir=f"output/{log_dir_name}/trained_model",
+    output_dir=f"../output/{log_dir_name}/trained_model",
     overwrite_output_dir=True,
     per_device_train_batch_size=2,
     num_train_epochs=400,

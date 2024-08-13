@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:24.02-py3
+FROM nvcr.io/nvidia/pytorch:23.12-py3
 
 # # Set environment variables
 # ENV DEBIAN_FRONTEND=noninteractive
@@ -23,11 +23,11 @@ FROM nvcr.io/nvidia/pytorch:24.02-py3
 # RUN pip3 install transformers
 
 # # Set the working directory
-# WORKDIR /app
+WORKDIR /train
 
 # COPY . .
 
-# # Set the entrypoint
-# ENTRYPOINT [ "python3" ]
+# Set the entrypoint
+ENTRYPOINT [ "python3" ]
 
-# CMD [ "main.py" ]
+CMD [ "code/main.py" ]
