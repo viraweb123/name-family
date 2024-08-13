@@ -23,13 +23,13 @@ FROM 139.99.239.192:5000/nvcr.io/nvidia/pytorch:23.12-py3
 RUN pip3 install transformers[torch]
 
 # # Set the working directory
-WORKDIR /train
+WORKDIR /train/code
 
 # COPY . .
 
 # Set the entrypoint
 # ENTRYPOINT [ "python3" ]
 
-RUN cd /train/code
+# RUN cd /train/code
 
-# CMD [ "python3", "./main.py" ]
+CMD [ "python3", "./main.py" ]
