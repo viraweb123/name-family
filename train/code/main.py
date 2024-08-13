@@ -71,12 +71,12 @@ def train(train_file_path,
 
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-logging.info("--------------- training info ---------------\n", train(
+train(
     train_file_path="../input/test.txt",
     model_name="gpt2",
     output_dir=f"../output/{log_dir_name}/trained_model",
     overwrite_output_dir=True,
     per_device_train_batch_size=2,
     num_train_epochs=32,
-    save_steps=10000
-))
+    save_steps=5000
+)
