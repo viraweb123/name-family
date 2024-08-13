@@ -32,4 +32,4 @@ WORKDIR /train
 
 RUN cd /train/code
 
-CMD [ "python3", "./main.py" ]
+# CMD [ "python3", "./main.py" ]
