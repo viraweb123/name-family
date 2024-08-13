@@ -6,7 +6,7 @@ from datetime import datetime
 import logging 
 
 wrapped_tokenizer = PreTrainedTokenizerFast(
-    tokenizer_file="../tokenizer/tokenizer_BPE3.json",
+    tokenizer_file="tokenizer_BPE3.json",
     bos_token="<|endoftext|>",
     eos_token="<|endoftext|>",
     
