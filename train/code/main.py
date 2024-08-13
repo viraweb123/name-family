@@ -3,6 +3,7 @@ from transformers import PreTrainedTokenizerFast
 from transformers import TextDataset, DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments
 from datetime import datetime
+import torch
 import logging 
 
 wrapped_tokenizer = PreTrainedTokenizerFast(
@@ -59,6 +60,7 @@ def train(train_file_path,
 
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
+logging.currentframe(torch.cuda.is_available())
 train(
     train_file_path="../input/test.txt",
     model_name="gpt2",
