@@ -4,6 +4,18 @@ from transformers import TextDataset, DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments
 from datetime import datetime
 import logging 
+import torch
+
+_logger = logging.getLogger(__name__)
+
+
+logging.basicConfig(filename='../log/basic.log',
+                    encoding='utf-8',
+                    level=logging.INFO, 
+                    filemode = 'w', 
+                    format='%(process)d-%(levelname)s-%(message)s'
+                    )
+
 
 
 wrapped_tokenizer = PreTrainedTokenizerFast(
@@ -13,7 +25,6 @@ wrapped_tokenizer = PreTrainedTokenizerFast(
     
 )
 tokenizer=wrapped_tokenizer
-
  
 def load_dataset(filepath,tokenizer,blocksize=128):
     dataset=TextDataset(tokenizer=tokenizer,
@@ -60,7 +71,7 @@ def train(train_file_path,
 
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-train(
+logging.info("--------------- training info ---------------\n", train(
     train_file_path="../input/test.txt",
     model_name="gpt2",
     output_dir=f"../output/{log_dir_name}/trained_model",
@@ -68,4 +79,4 @@ train(
     per_device_train_batch_size=2,
     num_train_epochs=32,
     save_steps=10000
-)
+))
