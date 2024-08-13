@@ -25,6 +25,8 @@ wrapped_tokenizer = PreTrainedTokenizerFast(
     
 )
 tokenizer=wrapped_tokenizer
+pre_model=GPT2LMHeadModel.from_pretrained("gpt2")
+pre_model.save_pretrained("gpt2")
  
 def load_dataset(filepath,tokenizer,blocksize=128):
     dataset=TextDataset(tokenizer=tokenizer,
@@ -70,6 +72,7 @@ def train(train_file_path,
     trainer.save_model()
 
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
 
 train(
     train_file_path="../input/test.txt",
