@@ -66,6 +66,6 @@ train(
     output_dir=f"../output/{log_dir_name}/trained_model",
     overwrite_output_dir=True,
     per_device_train_batch_size=2,
-    num_train_epochs=400,
+    num_train_epochs=32,
     save_steps=10000
 )
