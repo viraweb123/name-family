@@ -66,5 +66,5 @@ train(
     overwrite_output_dir=True,
     per_device_train_batch_size=2,
     num_train_epochs=400,
-    save_steps=500
+    save_steps=10000
 )
