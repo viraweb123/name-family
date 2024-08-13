@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:23.12-py3
+FROM 139.99.239.192:5000/nvcr.io/nvidia/pytorch:23.12-py3
 
 # # Set environment variables
 # ENV DEBIAN_FRONTEND=noninteractive
