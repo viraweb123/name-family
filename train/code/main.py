@@ -6,6 +6,8 @@ from datetime import datetime
 import torch
 import logging 
 
+print("thissss toorch" + torch.cuda.is_available())
+
 wrapped_tokenizer = PreTrainedTokenizerFast(
     tokenizer_file="tokenizer_BPE3.json",
     bos_token="<|endoftext|>",
@@ -60,7 +62,6 @@ def train(train_file_path,
 
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
-print(torch.cuda.is_available())
 train(
     train_file_path="../input/test.txt",
     model_name="gpt2",
