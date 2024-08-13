@@ -20,7 +20,7 @@ FROM 139.99.239.192:5000/nvcr.io/nvidia/pytorch:23.12-py3
 # RUN python3 -m pip install --upgrade pip
 
 # # Install PyTorch and torchvision
-# RUN pip3 install transformers
+RUN pip3 install transformers
 
 # # Set the working directory
 WORKDIR /train
