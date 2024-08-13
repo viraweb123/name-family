@@ -80,7 +80,7 @@ out_put_dir_var=f"../output/{log_dir_name}/trained_model"
 overwrite_output_dir_var=True
 per_device_train_batch_size_var=2
 num_train_epochs_var=50
-save_steps_var=2
+save_steps_var=50
 cuda_avaliable=torch.cuda.is_available()
 
 logging.info("Optimizer is AdamW")
