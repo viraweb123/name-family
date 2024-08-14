@@ -2,17 +2,14 @@
 
 REPO_DIR="name-family"
 
-# Function to check if we are in the repository directory
 check_if_in_repo() {
   [ "$(basename "$(pwd)")" == "$REPO_DIR" ]
 }
 
-# Function to check if the repository directory exists
 check_repo_exists() {
   [ -d "$REPO_DIR" ]
 }
 
-# Function to navigate to the repository directory
 navigate_to_repo() {
   cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
 }
