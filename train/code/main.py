@@ -85,7 +85,7 @@ cuda_avaliable=torch.cuda.is_available()
 
 logging.info("Optimizer is AdamW")
 logging.info("using model" ,model_name_var)
-logging.warning("Saving log in:", out_put_dir_var)
+logging.warning("Saving Trained Model in:", out_put_dir_var)
 logging.warning("Using dataset:", train_file_path_var)
 logging.debug("Epoch:", num_train_epochs_var)
 
