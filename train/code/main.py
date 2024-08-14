@@ -12,6 +12,7 @@ log_base_dir = "/train/log"
 input_base_dir = "/train/input"    
 
 output_dir = os.path.join(output_base_dir, log_dir_name, "trained_model")
+logging_dir = os.path.join(output_base_dir, "model_log")
 log_dir = os.path.join(log_base_dir, log_dir_name)
 
 os.makedirs(output_dir, exist_ok=True)
@@ -81,6 +82,8 @@ def train(train_file_path,
         overwrite_output_dir=overwrite_output_dir,
         per_device_train_batch_size=per_device_train_batch_size,
         num_train_epochs=num_train_epochs,
+        logging_dir=logging_dir, 
+        logging_steps=10,
         save_steps=save_steps
     )
     trainer = Trainer(
