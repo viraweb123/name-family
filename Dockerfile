@@ -19,4 +19,4 @@ RUN mkdir -p /train/output && chmod -R 777 /train/output /train/log
 
 
 # CMD [ "python3", "main.py" ]
-ENTRYPOINT ["python", "main.py"] > /train/log/training_output.log 2>&1
+ENTRYPOINT ["python3", "main.py"] > /train/log/training_output.log 2>&1
