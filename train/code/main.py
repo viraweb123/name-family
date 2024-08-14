@@ -27,7 +27,7 @@ overwrite_output_dir_var = True
 per_device_train_batch_size_var = 10
 num_train_epochs_var = 32
 save_steps_var = 100
-logging_steps = 5
+logging_steps = 100
 
 logging.info("Starting the training process")
 
