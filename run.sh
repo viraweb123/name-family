@@ -1,6 +1,7 @@
 #!/bin/bash
 
 REPO_DIR="name-family"
+IMAGE_NAME="train:v1"
 
 check_if_in_repo() {
   [ "$(basename "$(pwd)")" == "$REPO_DIR" ]
@@ -12,6 +13,10 @@ check_repo_exists() {
 
 navigate_to_repo() {
   cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
+}
+
+check_docker_image_exists() {
+  docker image inspect "$IMAGE_NAME" > /dev/null 2>&1
 }
 
 if check_if_in_repo; then
@@ -35,13 +40,17 @@ else
   git pull
 fi
 
-# echo "Building the Docker image..."
-# docker build -t train:v1 .
+if check_docker_image_exists; then
+  echo "Docker image '$IMAGE_NAME' already exists. Skipping build."
+else
+  echo "Building the Docker image..."
+  docker build -t "$IMAGE_NAME" .
 
-# if [ $? -ne 0 ]; then
-#   echo "Failed to build Docker image."
-#   exit 1
-# fi
+  if [ $? -ne 0 ]; then
+    echo "Failed to build Docker image."
+    exit 1
+  fi
+fi
 
 echo "Setting permissions for 'train/' directory..."
 chmod -fR 777 train/
