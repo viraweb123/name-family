@@ -7,9 +7,9 @@ RUN pip3 install --no-cache-dir transformers[torch]
 WORKDIR /train/code/
 
 
-COPY code/ /train/code/
-COPY input/ /train/input/
-COPY log/ /train/log/
+COPY ../code/ /train/code/
+COPY ../input/ /train/input/
+COPY ../log/ /train/log/
 
 
 RUN mkdir -p /train/.cache/huggingface
