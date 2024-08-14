@@ -18,4 +18,4 @@ RUN mkdir -p /train/.cache/huggingface
 RUN mkdir -p /train/output && chmod -R 777 /train/output /train/log
 
 
-CMD [ "python3", "main.py" ]
+# CMD [ "python3", "main.py" ]
