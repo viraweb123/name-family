@@ -24,8 +24,8 @@ logging.basicConfig(filename=os.path.join(log_dir, 'training.log'), level=loggin
 train_file_path_var = os.path.join(input_base_dir, 'test.txt')
 model_name_var = 'gpt2'
 overwrite_output_dir_var = True
-per_device_train_batch_size_var = 2
-num_train_epochs_var = 50
+per_device_train_batch_size_var = 100
+num_train_epochs_var = 32
 save_steps_var = 5000
 logging_steps = 100
 
