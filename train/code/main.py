@@ -26,8 +26,8 @@ model_name_var = 'gpt2'
 overwrite_output_dir_var = True
 per_device_train_batch_size_var = 10
 num_train_epochs_var = 32
-save_steps_var = 5000
-logging_steps = 100
+save_steps_var = 100
+logging_steps = 5
 
 logging.info("Starting the training process")
 
