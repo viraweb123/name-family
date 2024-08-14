@@ -37,7 +37,7 @@ docker run \
     -v $(pwd)/train:/train \
     -e HF_HOME=/train/.cache/huggingface \
     -w "/train/code" \
-    train:latest \
+    train:v1 \
     python3 main.py 
 
 if [ $? -ne 0 ]; then
