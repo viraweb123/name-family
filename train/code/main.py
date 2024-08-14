@@ -17,6 +17,7 @@ log_dir = os.path.join(log_base_dir, log_dir_name)
 
 os.makedirs(output_dir, exist_ok=True)
 os.makedirs(log_dir, exist_ok=True)
+os.makedirs(logging_dir, exist_ok=True)
 
 logging.basicConfig(filename=os.path.join(log_dir, 'training.log'), level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
