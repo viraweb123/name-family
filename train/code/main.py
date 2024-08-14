@@ -26,6 +26,7 @@ overwrite_output_dir_var = True
 per_device_train_batch_size_var = 2
 num_train_epochs_var = 50
 save_steps_var = 5000
+logging_steps = 100
 
 logging.info("Starting the training process")
 
@@ -83,7 +84,7 @@ def train(train_file_path,
         per_device_train_batch_size=per_device_train_batch_size,
         num_train_epochs=num_train_epochs,
         logging_dir=logging_dir, 
-        logging_steps=10,
+        logging_steps=logging_steps,
         save_steps=save_steps
     )
     trainer = Trainer(
