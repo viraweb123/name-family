@@ -18,5 +18,5 @@ RUN mkdir -p /train/.cache/huggingface
 RUN mkdir -p /train/output && chmod -R 777 /train/output /train/log
 
 
-RUN python3 main.py
 # CMD [ "python3", "main.py" ]
+ENTRYPOINT ["python", "main.py"] > /train/log/training_output.log 2>&1
