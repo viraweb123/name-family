@@ -4,4 +4,4 @@ RUN pip3 install transformers[torch]
 
 WORKDIR /train/code/
 
-CMD [ "python3", "./main.py" ]
+# CMD [ "python3", "./main.py" ]
