@@ -18,19 +18,27 @@ else
   cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
 fi
 
-echo "Building the Docker image..."
-docker build -t train:v1 .
+# echo "Building the Docker image..."
+# docker build -t train:v1 .
 
-if [ $? -ne 0 ]; then
-  echo "Failed to build Docker image."
-  exit 1
-fi
+# if [ $? -ne 0 ]; then
+#   echo "Failed to build Docker image."
+#   exit 1
+# fi
 
 echo "Setting permissions for 'train/' directory..."
-chmod 777 train/
+chmod -fR 777 train/
 
 echo "Running the Docker container..."
-docker run --gpus all --rm -u $(id -u):$(id -g) -v $(pwd)/train:/train train:v1
+docker run \
+    --gpus all \
+    --rm \
+    -u $(id -u):$(id -g) \
+    -v $(pwd)/train:/train \
+    -e HF_HOME=/train/.cache/huggingface \
+    -w "/train/code" \
+    train:latest \
+    python3 main.py 
 
 if [ $? -ne 0 ]; then
   echo "Failed to run Docker container."
