@@ -1,14 +1,22 @@
 #!/bin/bash
 
-echo "Cloning the repository..."
-git clone https://github.com/viraweb123/name-family.git
+REPO_DIR="name-family"
 
-if [ $? -ne 0 ]; then
-  echo "Failed to clone repository."
-  exit 1
+if [ -d "$REPO_DIR" ]; then
+  echo "Repository directory '$REPO_DIR' already exists. Pulling latest changes..."
+  cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
+  git pull
+else
+  echo "Cloning the repository..."
+  git clone https://github.com/viraweb123/name-family.git
+
+  if [ $? -ne 0 ]; then
+    echo "Failed to clone repository."
+    exit 1
+  fi
+
+  cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
 fi
-
-cd name-family/ || { echo "Failed to change directory to 'name-family'."; exit 1; }
 
 echo "Building the Docker image..."
 docker build -t train:v1 .
