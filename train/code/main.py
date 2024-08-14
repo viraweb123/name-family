@@ -12,7 +12,7 @@ log_base_dir = "/train/log"
 input_base_dir = "/train/input"    
 
 output_dir = os.path.join(output_base_dir, log_dir_name, "trained_model")
-logging_dir = os.path.join(output_base_dir, "model_log")
+logging_dir = os.path.join(log_base_dir, "model_log")
 log_dir = os.path.join(log_base_dir, log_dir_name)
 
 os.makedirs(output_dir, exist_ok=True)
