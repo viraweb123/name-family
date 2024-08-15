@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO_DIR="name-family"
+REPO_DIR="$(pwd)name-family"
 
 check_if_in_repo() {
   if [ "$(basename "$(pwd)")" == "$REPO_DIR" ]; then
