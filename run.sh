@@ -2,7 +2,7 @@
 
 REPO_DIR="$(pwd)/name-family"
 
-check_if_in_repo_or_name_family() {
+check_if_in_repo() {
   local current_dir_name=$(basename "$(pwd)")
   local current_dir_path=$(pwd)
   
