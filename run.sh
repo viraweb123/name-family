@@ -1,14 +1,15 @@
 #!/bin/bash
 
-REPO_DIR="$(pwd)name-family"
+REPO_DIR="$(pwd)/name-family"
 
-check_if_in_repo() {
-  if [ "$(basename "$(pwd)")" == "$REPO_DIR" ]; then
-    return 0
-  elif [ "$(pwd)" == *"$REPO_DIR"* ]; then
-    return 0
+check_if_in_repo_or_name_family() {
+  local current_dir_name=$(basename "$(pwd)")
+  local current_dir_path=$(pwd)
+  
+  if [ "$current_dir_name" == "name-family" ] || [ "$current_dir_path" == "$REPO_DIR" ]; then
+    return 0  
   else
-    return 1
+    return 1 
   fi
 }
 
