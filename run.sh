@@ -2,20 +2,43 @@
 
 REPO_DIR="name-family"
 
-if [ -d "$REPO_DIR" ]; then
-  echo "Repository directory '$REPO_DIR' already exists. Pulling latest changes..."
-  cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
-  git pull
-else
-  echo "Cloning the repository..."
-  git clone https://github.com/viraweb123/name-family.git
+check_if_in_repo() {
+  if [ "$(basename "$(pwd)")" == "$REPO_DIR" ]; then
+    return 0
+  elif [ "$(pwd)" == *"$REPO_DIR"* ]; then
+    return 0
+  else
+    return 1
+  fi
+}
 
-  if [ $? -ne 0 ]; then
-    echo "Failed to clone repository."
-    exit 1
+check_repo_exists() {
+  [ -d "$REPO_DIR" ]
+}
+
+navigate_to_repo() {
+  cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
+}
+
+if check_if_in_repo; then
+  echo "Already in the repository directory. Pulling latest changes..."
+else
+  if check_repo_exists; then
+    echo "Repository directory '$REPO_DIR' exists. Changing to the directory..."
+    navigate_to_repo
+  else
+    echo "Cloning the repository..."
+    git clone https://github.com/viraweb123/name-family.git
+
+    if [ $? -ne 0 ]; then
+      echo "Failed to clone repository."
+      exit 1
+    fi
+
+    navigate_to_repo
   fi
 
-  cd "$REPO_DIR" || { echo "Failed to change directory to '$REPO_DIR'."; exit 1; }
+  git pull
 fi
 
 echo "Setting permissions for 'train/' directory..."
