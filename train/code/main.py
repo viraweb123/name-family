@@ -133,7 +133,7 @@ bleu=evaluate.load('bleu')
 
 logging.info(f"Readin evaluation data form: {input_base_dir}/eval.csv")
 
-eval_data = pd.read_csv(input_base_dir + "eval.csv")
+eval_data = pd.read_csv(input_base_dir + "/eval.csv")
 
 logging.warning("Seperating wrong and correct data...")
 wrong_name = eval_data["wrong"]
