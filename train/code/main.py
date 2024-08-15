@@ -4,6 +4,8 @@ from datetime import datetime
 from transformers import GPT2LMHeadModel, Trainer, TrainingArguments
 from transformers import PreTrainedTokenizerFast, TextDataset, DataCollatorForLanguageModeling
 import torch
+import evaluate
+import pandas as pd
 
 
 log_dir_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -119,3 +121,49 @@ logging.info(f"  - Model: {model_name_var}")
 logging.info(f"  - Dataset: {train_file_path_var}")
 logging.info(f"  - Epochs: {num_train_epochs_var}")
 logging.info(f"  - Logs saved to: {log_dir}")
+
+logging.info("Evaluating Trained Model Started...")
+logging.info(f"Evaluating Model in: {output_dir} Directory.")
+
+trained_model = GPT2LMHeadModel.from_pretrained(output_dir)
+
+logging.info("Evaluating model slected: Bleu")
+
+bleu=evaluate.load('bleu')
+
+logging.info(f"Readin evaluation data form: {input_base_dir + "eval.csv"}")
+
+eval_data = pd.read_csv(input_base_dir + "eval.csv")
+
+logging.warning("Seperating wrong and correct data...")
+wrong_name = eval_data["wrong"]
+correct_name = eval_data["correct"]
+
+logging.warning("Predicting started...")
+
+predicted_data=[]
+my_ref=[]
+for i in  wrong_name:
+
+    tokenized_sequence=tokenizer(i,return_tensors='pt')
+    input_ids=tokenized_sequence.input_ids
+    gen_tokens = trained_model.generate(
+    input_ids,
+    do_sample=True,
+    temperature=0.9,
+    max_length=15,)
+    gen_text = tokenizer.batch_decode(gen_tokens)[0]
+    correctname=gen_text[len(i)+1:]
+    e=correctname.split('\n')[0]
+    predicted_data.append(e)
+
+for j in correct_name:
+
+    my_ref.append(j) 
+
+
+results = bleu.compute(predictions=predicted_data, references=my_ref,
+          max_order = 2)
+logging.info("Evaluation compeleted...")
+
+logging.warning(f"- Evaluation trained model result: {results}") 
