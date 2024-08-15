@@ -131,7 +131,7 @@ logging.info("Evaluating model slected: Bleu")
 
 bleu=evaluate.load('bleu')
 
-logging.info(f"Readin evaluation data form: {input_base_dir + "eval.csv"}")
+logging.info(f"Readin evaluation data form: {input_base_dir}/eval.csv")
 
 eval_data = pd.read_csv(input_base_dir + "eval.csv")
 
