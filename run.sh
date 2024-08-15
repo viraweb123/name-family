@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Updating the Repository"
+echo "Updating the Repository..."
 git pull
 
 echo "Setting permissions for 'train/' directory..."
